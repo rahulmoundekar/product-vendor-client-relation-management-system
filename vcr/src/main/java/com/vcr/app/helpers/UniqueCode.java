@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class UniqueCode {
 
-	static final private String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	static final private String ALPHABET = "0123456789";
 	final private static Random rng = new SecureRandom();
 
 	private static char randomChar() {
@@ -28,7 +28,7 @@ public class UniqueCode {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(randomUUID(16, 0, 's'));
+		System.out.println(randomUUID(8, 0, '1'));
 	}
 
 }

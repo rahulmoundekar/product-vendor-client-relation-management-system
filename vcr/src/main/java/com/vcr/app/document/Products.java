@@ -8,8 +8,8 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@Document(collection = "products")
 @ToString
+@Document(collection = "products")
 public class Products {
 
 	@Id
