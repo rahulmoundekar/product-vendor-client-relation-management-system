@@ -22,14 +22,14 @@ import com.vcr.app.repo.impl.ClientRepository;
 import com.vcr.app.document.Clients;
 
 @RestController
-public class ClientsController {
+public class ClientController {
 
 	private String exception = "";
 
 	@Autowired
 	ClientRepository clientsRepository;
 
-	@GetMapping(value = "/api/Clients")
+	@GetMapping(value = "/api/clients")
 	public Iterable<Clients> Clients() {
 		return clientsRepository.findAll();
 	}
@@ -41,7 +41,7 @@ public class ClientsController {
 		Clients.setUpdate_timestamp(TimeStampUtility.currentMiliSecond());
 		Clients prod = clientsRepository.save(Clients);
 		if (prod != null) {
-			exception = "Proudct Saved Successfuly";
+			exception = "Client Saved Successfuly";
 		} else {
 			throw new ResourceNotFoundException("Clients Not Saved..Please try later..!!");
 		}
