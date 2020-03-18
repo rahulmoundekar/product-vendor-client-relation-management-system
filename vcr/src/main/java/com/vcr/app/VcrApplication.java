@@ -8,9 +8,6 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-
 import com.vcr.app.document.Clients;
 import com.vcr.app.document.Products;
 import com.vcr.app.document.Vendors;
@@ -18,6 +15,8 @@ import com.vcr.app.exceptions.ResourceNotFoundException;
 import com.vcr.app.helpers.ScannerUtility;
 import com.vcr.app.helpers.TimeStampUtility;
 import com.vcr.app.helpers.UniqueCode;
+import com.vcr.app.repo.impl.ClientProductRepositoryCustom;
+import com.vcr.app.repo.impl.ClientProductRepositoryImpl;
 import com.vcr.app.repo.impl.ClientRepository;
 import com.vcr.app.repo.impl.ProductRepository;
 import com.vcr.app.repo.impl.VendorRepository;
@@ -30,6 +29,7 @@ public class VcrApplication {
 		ClientRepository clientRepository = ac.getBean(ClientRepository.class);
 		ProductRepository productRepository = ac.getBean(ProductRepository.class);
 		VendorRepository vendorRepository = ac.getBean(VendorRepository.class);
+		ClientProductRepositoryCustom clientProductRepositoryCustom = ac.getBean(ClientProductRepositoryImpl.class);
 
 		Scanner sc = ScannerUtility.getInstance();
 		while (true) {
@@ -153,7 +153,8 @@ public class VcrApplication {
 				System.out.println("Client count is : " + clientRepository.count());
 				break;
 			case 10:
-
+				clientProductRepositoryCustom.find_the_sum_of_amount_each_product_sold_to_the_client()
+						.forEach(System.out::println);
 				break;
 
 			default:
