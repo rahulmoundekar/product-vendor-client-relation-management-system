@@ -143,7 +143,8 @@ public class VcrApplication {
 				clientRepository.findAll().forEach(System.out::println);
 				break;
 			case 7:
-				clientRepository.findAllWhereProudctListGraterThan(3);
+				clientProductRepositoryCustom.find_all_client_which_takes_more_than_more_product()
+						.forEach(System.out::println);
 				break;
 			case 8:
 				break;
