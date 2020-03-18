@@ -37,7 +37,7 @@ public class ProductController {
 	public ResponseEntity<String> save(@RequestBody Products product) throws ResourceNotFoundException {
 
 		product.setActive(false);
-		product.setUpdate_timestamp(TimeStampUtility.currentMiliSecond());
+		product.setUpdateTimestamp(TimeStampUtility.currentMiliSecond());
 		Products prod = productRepository.save(product);
 		if (prod != null) {
 			exception = "Proudct Saved Successfuly";

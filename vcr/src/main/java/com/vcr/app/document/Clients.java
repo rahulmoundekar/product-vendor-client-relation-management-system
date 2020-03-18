@@ -1,9 +1,10 @@
 package com.vcr.app.document;
 
-import java.util.Set;
+import java.util.List;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +16,24 @@ import lombok.ToString;
 @Document(collection = "clients")
 public class Clients {
 
-	private Integer client_id;
-	private String name;
-	private String contact;
-	private Boolean active;
-	private Long update_timestamp;
+	@Id
+	private String id;
 
-	// @DBRef(db = "products")
-	private Set<Products> productList;
+	@Field(name = "client_id")
+	private Integer clientId;
+
+	@Field(name = "name")
+	private String name;
+
+	@Field(name = "contact")
+	private String contact;
+
+	@Field(name = "active")
+	private Boolean active;
+
+	@Field(name = "update_timestamp")
+	private Long updateTimestamp;
+
+	private List<Products> productList;
 
 }

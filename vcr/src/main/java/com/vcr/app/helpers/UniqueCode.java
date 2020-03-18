@@ -28,7 +28,7 @@ public class UniqueCode {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(randomUUID(8, 0, '1'));
+		System.out.println(randomUUID(4, 0, '0'));
 	}
 
 }

@@ -38,7 +38,7 @@ public class ClientController {
 	public ResponseEntity<String> save(@RequestBody Clients Clients) throws ResourceNotFoundException {
 
 		Clients.setActive(false);
-		Clients.setUpdate_timestamp(TimeStampUtility.currentMiliSecond());
+		Clients.setUpdateTimestamp(TimeStampUtility.currentMiliSecond());
 		Clients prod = clientsRepository.save(Clients);
 		if (prod != null) {
 			exception = "Client Saved Successfuly";
