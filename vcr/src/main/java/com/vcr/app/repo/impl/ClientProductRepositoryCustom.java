@@ -15,4 +15,8 @@ public interface ClientProductRepositoryCustom {
 
 	public List<VendorProductDto> find_the_highest_amount_vendors_product();
 
+	public List<Vendors> find_the_product_by_vendor_name(String vendorName);
+
+	public List<Vendors> find_the_client_which_take_vendor_products(String vendorName);
+
 }

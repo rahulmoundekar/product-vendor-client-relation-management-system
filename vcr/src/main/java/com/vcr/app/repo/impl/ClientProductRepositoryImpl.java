@@ -19,11 +19,14 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.model.Field;
 import com.vcr.app.document.Clients;
 import com.vcr.app.document.Products;
 import com.vcr.app.document.Vendors;
 import com.vcr.app.dto.ClientProduct;
 import com.vcr.app.dto.VendorProductDto;
+
+import ch.qos.logback.core.net.server.Client;
 
 @Repository
 public class ClientProductRepositoryImpl implements ClientProductRepositoryCustom {
@@ -59,34 +62,42 @@ public class ClientProductRepositoryImpl implements ClientProductRepositoryCusto
 		return list;
 	}
 
-	public List<Vendors> find_the_three_highest_amount_for_each_vendors() {
-		Query query = Query.query(Criteria.where("productList").size(3));
-		List<Vendors> list = mongoTemplate.find(query, Vendors.class);
-		return list;
-	}
-
 	@Override
 	public List<VendorProductDto> find_the_highest_amount_vendors_product() {
 		Aggregation agg = newAggregation(unwind("productList"),
 				project("vendorName", "productList.productName", "productList.pricing"),
-				sort(Sort.Direction.ASC, "pricing"),
-				group("vendorName").first("vendorName").as("vendorName").last("productName").as("productName").last("pricing").as("pricing"));
+				sort(Sort.Direction.ASC, "pricing"), group("vendorName").first("vendorName").as("vendorName")
+						.last("productName").as("productName").last("pricing").as("pricing"));
 
 		// Convert the aggregation result into a List
 		AggregationResults<VendorProductDto> groupResults = mongoTemplate.aggregate(agg, Vendors.class,
 				VendorProductDto.class);
 		List<VendorProductDto> result = groupResults.getMappedResults();
-		System.out.println(result);
 		return result;
 	}
 
-	public Integer find_the_highest_amount_product() {
+	@Override
+	public List<Vendors> find_the_product_by_vendor_name(String vendorName) {
+		Query query = Query.query(Criteria.where("vendor_name").is(vendorName));
+		List<Vendors> list = mongoTemplate.find(query, Vendors.class);
+		return list;
+	}
 
-		Query query = new Query();
-		query.skip(-1);
-		query.limit(1);
-		SortOperation sortOperation = sort(Direction.DESC, "s");
-		mongoTemplate.find(query, Products.class);
+	@Override
+	public List<Vendors> find_the_client_which_take_vendor_products(String vendorName) {
+		Query query = Query.query(Criteria.where("vendor_name").is(vendorName));
+		query.fields().include("productList.product_id");
+		List<Vendors> list = mongoTemplate.find(query, Vendors.class);
+		System.out.println("vp : " + list);
+
+		List<Clients> clientList = null;
+		for (Vendors vendors : list) {
+			for (Products products : vendors.getProductList()) {
+				Query query1 = Query.query(Criteria.where("productList.product_id").is(products.getProductId()));
+				clientList = mongoTemplate.find(query1, Clients.class);
+			}
+		}
+		System.out.println(clientList);
 		return null;
 	}
 

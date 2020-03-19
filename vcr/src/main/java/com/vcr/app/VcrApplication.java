@@ -44,8 +44,9 @@ public class VcrApplication {
 			System.out.println("| 8. Find all the Client for Vendors                        |");
 			System.out.println("| 9. Find all Count of Product, Vendors and Client we have  |");
 			System.out.println("|10. Find the sum of amount each product Sold to the client |");
-			System.out.println("|11. Find the Client which takes Vendors Products           |");
+			System.out.println("|11. Find the Product By Vendor Name                        |");
 			System.out.println("|12. Find the highest Amount Vendors-Product                |");
+			System.out.println("|13. Find the Client which takes vendor Products            |");
 			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("Choose any operation you wanna perform");
 			Integer option = sc.nextInt();
@@ -160,14 +161,22 @@ public class VcrApplication {
 						.forEach(System.out::println);
 				break;
 			case 11:
+				System.out.println("Enter Vendor Name to Find Product");
+				String vendorName = sc.next();
+				clientProductRepositoryCustom.find_the_product_by_vendor_name(vendorName).forEach(System.out::println);
 				break;
-			case 12: clientProductRepositoryCustom.find_the_highest_amount_vendors_product();
+			case 12:
+				clientProductRepositoryCustom.find_the_highest_amount_vendors_product().forEach(System.out::println);
+				break;
+			case 13:
+				System.out.println("Enter Vendor Name to Find Client");
+				String vName = sc.next();
+				clientProductRepositoryCustom.find_the_client_which_take_vendor_products(vName);
 				break;
 			default:
 				System.exit(0);
 				break;
 			}
-
 		}
 	}
 }
