@@ -40,10 +40,12 @@ public class VcrApplication {
 			System.out.println("| 4. Find All Vendors                                       |");
 			System.out.println("| 5. Add Clients                                            |");
 			System.out.println("| 6. Find All Clients                                       |");
-			System.out.println("| 7. Find all Client Which takes more than 2 Product        |");
+			System.out.println("| 7. Find all Client Which takes (2/3/4) Product            |");
 			System.out.println("| 8. Find all the Client for Vendors                        |");
 			System.out.println("| 9. Find all Count of Product, Vendors and Client we have  |");
 			System.out.println("|10. Find the sum of amount each product Sold to the client |");
+			System.out.println("|11. Find the Client which takes Vendors Products           |");
+			System.out.println("|12. Find the highest Amount Vendors-Product                |");
 			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("Choose any operation you wanna perform");
 			Integer option = sc.nextInt();
@@ -157,7 +159,10 @@ public class VcrApplication {
 				clientProductRepositoryCustom.find_the_sum_of_amount_each_product_sold_to_the_client()
 						.forEach(System.out::println);
 				break;
-
+			case 11:
+				break;
+			case 12: clientProductRepositoryCustom.find_the_highest_amount_vendors_product();
+				break;
 			default:
 				System.exit(0);
 				break;
