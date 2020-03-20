@@ -41,12 +41,11 @@ public class VcrApplication {
 			System.out.println("| 5. Add Clients                                            |");
 			System.out.println("| 6. Find All Clients                                       |");
 			System.out.println("| 7. Find all Client Which takes (2/3/4) Product            |");
-			System.out.println("| 8. Find all the Client for Vendors                        |");
-			System.out.println("| 9. Find all Count of Product, Vendors and Client we have  |");
-			System.out.println("|10. Find the sum of amount each product Sold to the client |");
-			System.out.println("|11. Find the Product By Vendor Name                        |");
-			System.out.println("|12. Find the highest Amount Vendors-Product                |");
-			System.out.println("|13. Find the Client which takes vendor Products            |");
+			System.out.println("| 8. Find all Count of Product, Vendors and Client we have  |");
+			System.out.println("| 9. Find the sum of amount each product Sold to the client |");
+			System.out.println("|10. Find the Product By Vendor Name                        |");
+			System.out.println("|11. Find the highest Amount Vendors-Product                |");
+			System.out.println("|12. Find the Client which takes vendor Products            |");
 			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("Choose any operation you wanna perform");
 			Integer option = sc.nextInt();
@@ -150,28 +149,27 @@ public class VcrApplication {
 						.forEach(System.out::println);
 				break;
 			case 8:
-				break;
-			case 9:
 				System.out.println("Product count is : " + productRepository.count());
 				System.out.println("Vendor count is : " + vendorRepository.count());
 				System.out.println("Client count is : " + clientRepository.count());
 				break;
-			case 10:
+			case 9:
 				clientProductRepositoryCustom.find_the_sum_of_amount_each_product_sold_to_the_client()
 						.forEach(System.out::println);
 				break;
-			case 11:
+			case 10:
 				System.out.println("Enter Vendor Name to Find Product");
 				String vendorName = sc.next();
 				clientProductRepositoryCustom.find_the_product_by_vendor_name(vendorName).forEach(System.out::println);
 				break;
-			case 12:
+			case 11:
 				clientProductRepositoryCustom.find_the_highest_amount_vendors_product().forEach(System.out::println);
 				break;
-			case 13:
+			case 12:
 				System.out.println("Enter Vendor Name to Find Client");
 				String vName = sc.next();
-				clientProductRepositoryCustom.find_the_client_which_take_vendor_products(vName);
+				clientProductRepositoryCustom.find_the_client_which_take_vendor_products(vName)
+						.forEach(System.out::println);
 				break;
 			default:
 				System.exit(0);

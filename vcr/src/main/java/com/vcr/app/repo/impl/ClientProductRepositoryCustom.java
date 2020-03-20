@@ -17,6 +17,6 @@ public interface ClientProductRepositoryCustom {
 
 	public List<Vendors> find_the_product_by_vendor_name(String vendorName);
 
-	public List<Vendors> find_the_client_which_take_vendor_products(String vendorName);
+	public List<Clients> find_the_client_which_take_vendor_products(String vendorName);
 
 }

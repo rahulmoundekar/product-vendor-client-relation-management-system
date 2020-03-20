@@ -57,7 +57,7 @@ public class ClientProductRepositoryImpl implements ClientProductRepositoryCusto
 		 * Query query = new Query();
 		 * query.addCriteria(Criteria.where("this.productList.length >= 3"));
 		 */
-		Query query = Query.query(Criteria.where("productList").size(3));
+		Query query = Query.query(Criteria.where("productList").size(2));
 		List<Clients> list = mongoTemplate.find(query, Clients.class);
 		return list;
 	}
@@ -84,7 +84,7 @@ public class ClientProductRepositoryImpl implements ClientProductRepositoryCusto
 	}
 
 	@Override
-	public List<Vendors> find_the_client_which_take_vendor_products(String vendorName) {
+	public List<Clients> find_the_client_which_take_vendor_products(String vendorName) {
 		Query query = Query.query(Criteria.where("vendor_name").is(vendorName));
 		query.fields().include("productList.product_id");
 		List<Vendors> list = mongoTemplate.find(query, Vendors.class);
@@ -97,8 +97,9 @@ public class ClientProductRepositoryImpl implements ClientProductRepositoryCusto
 				clientList = mongoTemplate.find(query1, Clients.class);
 			}
 		}
-		System.out.println(clientList);
-		return null;
+		
+		
+		return clientList;
 	}
 
 }
