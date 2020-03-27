@@ -21,6 +21,8 @@ import com.vcr.app.repo.impl.ClientRepository;
 import com.vcr.app.repo.impl.ProductRepository;
 import com.vcr.app.repo.impl.VendorRepository;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
 public class VcrApplication {
 
